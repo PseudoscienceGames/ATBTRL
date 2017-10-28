@@ -17,13 +17,13 @@ public class WorldMesh : MonoBehaviour
 			foreach(int tri in tile.tris)
 			{
 				tris.Add(tri + triNum);
-				Debug.Log(tri + triNum);
 			}
 			triNum += tile.points.Count;
 		}
 		Mesh mesh = GetComponent<MeshFilter>().mesh;
 		mesh.vertices = verts.ToArray();
 		mesh.triangles = tris.ToArray();
-		mesh.RecalculateNormals();
+		//mesh.RecalculateNormals();
+		//mesh.RecalculateTangents();
 	}
 }

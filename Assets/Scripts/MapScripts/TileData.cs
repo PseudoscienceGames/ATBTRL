@@ -8,6 +8,7 @@ public class TileData
 	public Vector3 worldLoc;
 	public float height;
 	public List<Vector3> points = new List<Vector3>();
+	public List<int> tris = new List<int>();
 	public List<int> connections = new List<int>();
 
 	public TileData(int index)
@@ -19,7 +20,6 @@ public class TileData
 	{
 		SortConnections();
 		worldLoc = GridData.Instance.points[tileIndex];
-		points.Add(worldLoc);
 		for (int i = 0; i < connections.Count; i++)
 		{
 			int point1 = connections[i];
@@ -33,14 +33,15 @@ public class TileData
 		}
 		for(int i = 1; i < points.Count - 1; i++)
 		{
-			Debug.DrawLine(points[i], points[i + 1], Color.red, 1000);
+			tris.Add(i);
+			tris.Add(0);
+			tris.Add(i + 1);
 		}
-		Debug.DrawLine(points[1], points[points.Count - 1], Color.red, 1000);
 	}
 
 	private void FindPoint(int adjacentTile1, int adjacentTile2)
 	{
-		Vector3 point1 = points[0];
+		Vector3 point1 = worldLoc;
 		Vector3 point2 = GridData.Instance.points[adjacentTile1];
 		Vector3 point3 = GridData.Instance.points[adjacentTile2];
 		points.Add(((point1 + point2 + point3) / 3).normalized * worldLoc.magnitude);

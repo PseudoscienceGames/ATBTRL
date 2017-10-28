@@ -57,5 +57,6 @@ public class GridData : MonoBehaviour
 		{
 			t.GenMeshData();
 		}
+		GameObject.Find("WorldMesh").GetComponent<WorldMesh>().GenMesh(tiles);
 	}
 }

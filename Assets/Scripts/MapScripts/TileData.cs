@@ -7,6 +7,8 @@ public class TileData
 	public int tileIndex;
 	public Vector3 worldLoc;
 	public float height;
+	public int heightMax = 4;
+	public float heightMod = .25f;
 	public List<Vector3> points = new List<Vector3>();
 	public List<int> tris = new List<int>();
 	public List<int> connections = new List<int>();
@@ -18,7 +20,7 @@ public class TileData
 
 	public void GenMeshData()
 	{
-		height = Random.Range(0, 5);
+		height = Random.Range(0, heightMax);
 		SortConnections();
 		worldLoc = GridData.Instance.points[tileIndex];
 		for (int i = 0; i < connections.Count; i++)
@@ -32,21 +34,11 @@ public class TileData
 			int point2 = connections[i2];
 			FindPoint(point1, point2);
 		}
-		points.Add(Vector3.zero);
-		for(int i = 1; i < points.Count - 2; i++)
+		for(int i = 1; i < points.Count - 1; i++)
 		{
 			tris.Add(i);
 			tris.Add(0);
 			tris.Add(i + 1);
-		}
-		for (int i = 0; i < points.Count - 1; i++)
-		{
-			tris.Add(i);
-			if (i == points.Count - 2)
-				tris.Add(0);
-			else
-				tris.Add(i + 1);
-			tris.Add(points.Count - 1);
 		}
 	}
 
@@ -55,7 +47,7 @@ public class TileData
 		Vector3 point1 = worldLoc;
 		Vector3 point2 = GridData.Instance.points[adjacentTile1];
 		Vector3 point3 = GridData.Instance.points[adjacentTile2];
-		points.Add(((point1 + point2 + point3) / 3).normalized * (worldLoc.magnitude + height / 2f));
+		points.Add(((point1 + point2 + point3) / 3).normalized * (worldLoc.magnitude + height * heightMod));
 	}
 
 	public void SortConnections()

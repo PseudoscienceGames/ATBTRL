@@ -7,7 +7,7 @@ public class TileData
 	public int tileIndex;
 	public Vector3 worldLoc;
 	public float height;
-	public int heightMax = 4;
+	public int heightMax = 2;
 	public float heightMod = .25f;
 	public List<Vector3> points = new List<Vector3>();
 	public List<int> tris = new List<int>();
@@ -34,7 +34,7 @@ public class TileData
 			int point2 = connections[i2];
 			FindPoint(point1, point2);
 		}
-		for(int i = 1; i < points.Count - 1; i++)
+		for (int i = 1; i < points.Count - 1; i++)
 		{
 			tris.Add(i);
 			tris.Add(0);

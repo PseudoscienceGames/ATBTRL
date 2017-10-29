@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa11b0c3a5feb845a8f3c3ea315e221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridBlank: {fileID: 4300000, guid: 141b6dea6e0dc4a4b89ae706c8bfe5af, type: 3}
+  gridBlank: {fileID: 4300008, guid: 141b6dea6e0dc4a4b89ae706c8bfe5af, type: 3}
   points: []
   test: {fileID: 100000, guid: 0b561012b1887234aadb22a9dc1ae722, type: 3}
 --- !u!1 &268381530
